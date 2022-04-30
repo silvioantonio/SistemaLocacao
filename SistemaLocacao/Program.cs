@@ -32,6 +32,11 @@ builder.Services.AddScoped<IReportRepository, ReportRepository>();
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("CorsPolicy", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -44,6 +49,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 

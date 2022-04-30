@@ -51,9 +51,9 @@ namespace SistemaLocacao.Controllers
                 var response = await _clientService.Create(client);
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest("Cliente com esse nome e cpf ja cadastrados");
+                return BadRequest(e.Message);
             }
         }
 
